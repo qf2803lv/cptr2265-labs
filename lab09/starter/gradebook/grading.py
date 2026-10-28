@@ -110,8 +110,11 @@ def weighted_average(scores_by_category, weights):
 def late_penalty(score, days_late):
         _check_score(score)
 
-        if (days_late < 0):
-            raise ValueError("Days late must be from 0 and above")
+        if not isinstance(days_late, int):
+            raise TypeError("Days late must be an integer")
+        if days_late < 0:
+         raise ValueError("Days late must be from 0 and above")
+       
 
         if (days_late == 0):
             return 0

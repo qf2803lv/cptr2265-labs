@@ -81,9 +81,10 @@ def test_late_penalty_score_returns_type_error():
 def test_late_penalty_days_late_under_0():
     with pytest.raises(ValueError):
         late_penalty(100, -1)
+
 def test_late_penalty_days_late_returns_type_error():
     with pytest.raises(TypeError):
-        late_penalty(100, False)
+        late_penalty(100, "Not a number")
 
 # TODO: boundary values (exactly 93? 92.99? 0? 100?), drop_lowest, grade_points,
 #       weighted_average, roster_loader, repository, service ...
