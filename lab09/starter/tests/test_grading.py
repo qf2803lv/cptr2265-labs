@@ -8,7 +8,7 @@ Run from lab09/starter:
 
 import pytest
 
-from gradebook.grading import letter_grade, drop_lowest, grade_points, weighted_average
+from gradebook.grading import letter_grade, drop_lowest, grade_points, weighted_average, late_penalty
 
 
 def test_letter_grade_normal_score_returns_b():
@@ -66,6 +66,24 @@ def test_weighted_average_extra_weight_raises_value_error():
 
 def test_weighted_average_returns_normal_weighted_average():
     assert weighted_average({"labs": [90, 80], "exams": [70, 60]}, {"labs": .3, "exams": .7}) == 71.0
+
+def test_late_penalty_returns_normal_value():
+    assert late_penalty(100, 2) == 80
+
+def test_late_penalty_score_returns_value_error():
+    with pytest.raises(ValueError):
+        late_penalty(101, 1)
+
+def test_late_penalty_score_returns_type_error():
+    with pytest.raises(TypeError):
+        late_penalty("not a score", 1)
+
+def test_late_penalty_days_late_under_0():
+    with pytest.raises(ValueError):
+        late_penalty(100, -1)
+def test_late_penalty_days_late_returns_type_error():
+    with pytest.raises(TypeError):
+        late_penalty(100, False)
 
 # TODO: boundary values (exactly 93? 92.99? 0? 100?), drop_lowest, grade_points,
 #       weighted_average, roster_loader, repository, service ...
