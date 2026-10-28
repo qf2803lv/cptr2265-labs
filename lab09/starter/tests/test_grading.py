@@ -31,7 +31,10 @@ def test_drop_lowest_one_item_raises_error():
 
 def test_drop_lowest_negative_number_raises_error():
     with pytest.raises(ValueError):
-        drop_lowest([-100])
+        drop_lowest([-1], -1)
+
+def test_drop_lowest_n_equals_0_returns_list_back():
+    assert drop_lowest([90, 50, 70], 0) == [90, 50, 70]
 
 def test_grade_points_non_number_raises_type_error():
     with pytest.raises(TypeError):
@@ -46,7 +49,7 @@ def test_grade_point_B_returns_normal_score():
 
 def test_weighted_average_empty_value_raises_value_error():
     with pytest.raises(ValueError):
-        weighted_average({"labs": [90,80]}, {"labs": 0})
+        weighted_average({"labs": [90,80]}, {})
 
 def test_weighted_average_negative_weight_raises_value_error():
     with pytest.raises(ValueError):
