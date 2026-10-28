@@ -108,6 +108,10 @@ def weighted_average(scores_by_category, weights):
     return round(total, 2)
 
 def late_penalty(score, days_late):
+        _check_score(score)
+
+        
+
         if (days_late == 0):
             return 0
         else:
